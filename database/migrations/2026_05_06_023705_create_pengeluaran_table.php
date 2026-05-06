@@ -15,6 +15,10 @@ class CreatePengeluaranTable extends Migration
     {
         Schema::create('pengeluaran', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('barang_id')->constrained('barang')->onDelete('cascade');
+            $table->foreignId('divisi_id')->constrained('divisi')->onDelete('cascade');
+            $table->integer('jumlah');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }
