@@ -15,6 +15,9 @@ class CreateStokMasukTable extends Migration
     {
         Schema::create('stok_masuk', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('barang_id')->constrained('barang')->onDelete('cascade');
+            $table->integer('Jumlah');
+            $table->date('Tanggal');
             $table->timestamps();
         });
     }
