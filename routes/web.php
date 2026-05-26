@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StokMasukController;
 use App\Http\Controllers\PengeluaranController;
 
@@ -16,10 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', [DashboardController::class, 'index']);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 
 /*
@@ -39,7 +41,6 @@ Route::get('/stok-masuk/edit/{id}', [StokMasukController::class, 'edit']);
 Route::put('/stok-masuk/update/{id}', [StokMasukController::class, 'update']);
 
 Route::delete('/stok-masuk/delete/{id}', [StokMasukController::class, 'destroy']);
-
 
 
 /*
