@@ -1,10 +1,8 @@
 <?php
 
-namespace App;\Models;
+namespace App;
 
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
 class Barang extends Model
 {
@@ -14,6 +12,5 @@ class Barang extends Model
         'satuan',
         'stock',
         'stock_minimum',
-
     ];
 }

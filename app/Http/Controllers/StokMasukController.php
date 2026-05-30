@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
-use App\Models\StokMasuk;
+use App\Barang;
+use App\StokMasuk;
 use Illuminate\Http\Request;
 
 class StokMasukController extends Controller
@@ -11,12 +11,14 @@ class StokMasukController extends Controller
     public function index()
     {
         $data = StokMasuk::with('barang')->get();
+
         return view('stok_masuk.index', compact('data'));
     }
 
     public function create()
     {
         $barang = Barang::all();
+
         return view('stok_masuk.create', compact('barang'));
     }
 
@@ -24,7 +26,7 @@ class StokMasukController extends Controller
     {
         StokMasuk::create($request->all());
 
-        $barang = Barang::find($request->barang_id);
+        $barang = Barang::findOrFail($request->barang_id);
         $barang->stok += $request->jumlah;
         $barang->save();
 
@@ -36,7 +38,7 @@ class StokMasukController extends Controller
         $data = StokMasuk::findOrFail($id);
         $barang = Barang::all();
 
-        return view('stok_masuk.edit', compact('data','barang'));
+        return view('stok_masuk.edit', compact('data', 'barang'));
     }
 
     public function update(Request $request, $id)
@@ -51,6 +53,7 @@ class StokMasukController extends Controller
     public function destroy($id)
     {
         $data = StokMasuk::findOrFail($id);
+
         $data->delete();
 
         return redirect('/stok-masuk');
